@@ -27,6 +27,10 @@
                 </ul>
             </nav>
             <div class="t8-header__actions">
+                <a class="site-admin-btn" data-admin-link href="admin.html" aria-label="Admin panel" title="Admin panel">
+                    <svg class="site-admin-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
+                    <span class="site-admin-btn__label">Admin</span>
+                </a>
                 <a class="t8-btn t8-btn--primary t8-header__cta" id="t8-header-cta" href="#t8-booking">Book</a>
                 <button class="t8-menu-toggle" id="t8-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="t8-nav">
                     <span></span>

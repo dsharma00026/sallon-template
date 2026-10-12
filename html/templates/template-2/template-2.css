@@ -150,6 +150,10 @@ body[data-template="template-2"] {
     min-height: var(--t2-header-h);
 }
 
+.t2-header .site-admin-btn {
+    margin-left: auto;
+}
+
 .t2-logo {
     display: inline-flex;
     align-items: center;

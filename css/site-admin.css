@@ -1,0 +1,51 @@
+/* ============================================================
+   Shared header "Admin Panel" button
+   Rendered inside every template header (template-1 … template-10).
+   Colours inherit from each template's header so it adapts to
+   light and dark headers automatically.
+   ============================================================ */
+
+.site-admin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 40px;
+    padding: 0.5rem 0.95rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-decoration: none;
+    opacity: 0.72;
+    transition: opacity 0.25s ease, background-color 0.25s ease;
+}
+
+.site-admin-btn:hover,
+.site-admin-btn:focus-visible {
+    opacity: 1;
+    background-color: rgba(128, 128, 128, 0.14);
+}
+
+.site-admin-btn__icon {
+    width: 15px;
+    height: 15px;
+    flex: none;
+}
+
+@media (max-width: 760px) {
+    .site-admin-btn {
+        padding: 0.5rem;
+    }
+
+    .site-admin-btn__label {
+        display: none;
+    }
+}

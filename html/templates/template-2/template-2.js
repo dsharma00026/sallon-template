@@ -6,6 +6,10 @@
                 <a class="t2-logo" id="t2-site-logo" href="#t2-home" aria-label="Back to top">
                     <span class="t2-logo__name" id="t2-brand-name"></span>
                 </a>
+                <a class="site-admin-btn" data-admin-link href="admin.html" aria-label="Admin panel" title="Admin panel">
+                    <svg class="site-admin-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
+                    <span class="site-admin-btn__label">Admin</span>
+                </a>
                 <button class="t2-burger" id="t2-mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="t2-nav-menu">
                     <span class="t2-burger__bar"></span>
                     <span class="t2-burger__bar"></span>

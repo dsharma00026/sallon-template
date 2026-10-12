@@ -18,6 +18,10 @@
                 </ul>
             </nav>
             <div class="t1-header__actions">
+                <a class="site-admin-btn" data-admin-link href="admin.html" aria-label="Admin panel" title="Admin panel">
+                    <svg class="site-admin-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
+                    <span class="site-admin-btn__label">Admin</span>
+                </a>
                 <a class="t1-btn t1-btn--solid t1-header__cta" href="#booking">Book now</a>
                 <button class="t1-burger" id="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
                     <span class="t1-burger__line"></span>
