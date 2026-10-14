@@ -1,0 +1,144 @@
+/* ============================================================
+   Shared site widgets (rendered into every template-1 … template-10)
+   - WhatsApp call-to-action button inside each header
+   - Google Map + address block directly above each footer
+   Colours inherit from each template so the widgets adapt to
+   light and dark themes automatically.
+   ============================================================ */
+
+/* ---------- Header WhatsApp CTA ---------- */
+
+.site-wa-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 42px;
+    padding: 0.55rem 1.15rem;
+    border-radius: 999px;
+    background: #25d366;
+    color: #06331a;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    box-shadow: 0 8px 20px -10px rgba(37, 211, 102, 0.9);
+    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.site-wa-btn:hover,
+.site-wa-btn:focus-visible {
+    background: #1ebe5a;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -8px rgba(37, 211, 102, 0.9);
+}
+
+.site-wa-btn__icon {
+    width: 18px;
+    height: 18px;
+    flex: none;
+}
+
+/* ---------- Map above footer ---------- */
+
+.site-map {
+    display: block;
+    padding: clamp(3rem, 7vw, 6rem) 1.25rem;
+}
+
+.site-map__inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: center;
+}
+
+.site-map__eyebrow {
+    margin: 0 0 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.site-map__title {
+    margin: 0 0 0.85rem;
+    font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+    line-height: 1.1;
+}
+
+.site-map__address {
+    margin: 0 0 1.4rem;
+    max-width: 34ch;
+    opacity: 0.82;
+}
+
+.site-map__directions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.62rem 1.25rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    color: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.site-map__directions:hover,
+.site-map__directions:focus-visible {
+    opacity: 1;
+    background: rgba(127, 127, 127, 0.12);
+}
+
+.site-map__frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border: 1px solid rgba(127, 127, 127, 0.35);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 26px 60px -34px rgba(0, 0, 0, 0.65);
+}
+
+.site-map__frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 860px) {
+    .site-map__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .site-map__frame {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+@media (max-width: 760px) {
+    .site-wa-btn {
+        padding: 0.55rem;
+    }
+
+    .site-wa-btn__label {
+        display: none;
+    }
+}

@@ -4,7 +4,7 @@
 
 :root {
     --color-background: #f2f1ea;
-    --color-surface: #ffffff;
+    --color-surface: #fffdf8;
     --color-surface-dark: #101010;
     --color-primary: #3a4cff;
     --color-primary-strong: #2334e6;
@@ -17,6 +17,7 @@
     --color-muted: #5d5c54;
     --color-border: #dbd9cf;
     --color-border-strong: #c3c1b5;
+    --color-surface-alt: #e8e5d8;
 
     --t4-font-display: 'Space Grotesk', 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     --t4-font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -52,7 +53,10 @@ body[data-template="template-4"] {
     font-family: var(--t4-font-body);
     font-size: 1rem;
     line-height: 1.6;
+    font-synthesis: none;
+    font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
 }
 
@@ -213,6 +217,17 @@ body.t4-nav-open {
     color: var(--t4-on-dark);
 }
 
+/* Numbers line up cleanly in a bold, graphic layout */
+.t4-srow__price,
+.t4-featured__price,
+.t4-package__price,
+.t4-intro__stat-value,
+.t4-hero__meta-item dd,
+.t4-hours__time {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+}
+
 /* ---------- Header ---------- */
 
 .t4-header {
@@ -346,11 +361,11 @@ body.t4-nav-open .t4-burger__line:nth-child(2) {
 }
 
 .t4-hero__title {
-    margin: 0 0 1.2rem;
+    margin: 0 0 0.9rem;
     font-family: var(--t4-font-display);
     font-weight: 700;
-    font-size: clamp(2.6rem, 6.4vw, 5rem);
-    line-height: 0.9;
+    font-size: clamp(2.1rem, 5.6vw + 0.6rem, 5rem);
+    line-height: 0.92;
     letter-spacing: -0.03em;
     text-transform: uppercase;
     text-wrap: balance;
@@ -359,7 +374,7 @@ body.t4-nav-open .t4-burger__line:nth-child(2) {
 
 .t4-hero__lede {
     max-width: 34rem;
-    margin: 0 0 1.8rem;
+    margin: 0 0 1.4rem;
     font-size: clamp(1rem, 1.4vw, 1.18rem);
     color: var(--color-muted);
 }
@@ -368,7 +383,7 @@ body.t4-nav-open .t4-burger__line:nth-child(2) {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-bottom: 2.2rem;
+    margin-bottom: 1.5rem;
 }
 
 .t4-hero__meta {
@@ -376,7 +391,7 @@ body.t4-nav-open .t4-burger__line:nth-child(2) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.25rem;
     margin: 0;
-    padding-top: 1.5rem;
+    padding-top: 1.15rem;
     border-top: 2px solid var(--color-text);
 }
 
@@ -980,7 +995,7 @@ body.t4-nav-open .t4-burger__line:nth-child(2) {
 /* ---------- Team ---------- */
 
 .t4-team {
-    background: var(--color-background);
+    background: var(--color-surface-alt);
 }
 
 .t4-team__grid {
@@ -1808,6 +1823,24 @@ body.t4-nav-open .t4-burger__line:nth-child(2) {
     transform: none;
 }
 
+/* ---------- Hero viewport fit (desktop / laptop) ---------- */
+
+@media (min-width: 961px) {
+    .t4-hero {
+        padding-top: clamp(1.5rem, 3vw, 2.75rem);
+    }
+
+    .t4-hero__grid {
+        padding-bottom: clamp(1rem, 2.2vw, 1.75rem);
+    }
+
+    .t4-hero__media {
+        aspect-ratio: 4 / 5;
+        max-height: max(340px, calc(100vh - var(--t4-header-h) - 205px));
+        max-height: max(340px, calc(100svh - var(--t4-header-h) - 205px));
+    }
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1080px) {
@@ -1874,12 +1907,34 @@ body.t4-nav-open .t4-burger__line:nth-child(2) {
 
     .t4-hero__grid {
         grid-template-columns: 1fr;
+        gap: 0;
     }
 
+    .t4-hero__copy {
+        display: contents;
+    }
+
+    .t4-hero__copy > .t4-kicker { order: 1; }
+
+    .t4-hero__copy > .t4-hero__title { order: 2; }
+
+    .t4-hero__copy > .t4-hero__lede { order: 3; }
+
     .t4-hero__media {
-        max-width: 460px;
+        order: 4;
+        max-width: min(460px, 100%);
         width: 100%;
-        margin: 0 auto;
+        aspect-ratio: 5 / 4;
+        max-height: min(42vh, 360px);
+        max-height: min(42svh, 360px);
+        margin: 0.25rem auto 1.25rem;
+    }
+
+    .t4-hero__copy > .t4-hero__actions { order: 5; }
+
+    .t4-hero__copy > .t4-hero__meta {
+        order: 6;
+        margin-top: 0.25rem;
     }
 
     .t4-intro__grid {
@@ -1938,8 +1993,66 @@ body.t4-nav-open .t4-burger__line:nth-child(2) {
 }
 
 @media (max-width: 620px) {
+    :root {
+        --t4-header-h: 62px;
+        --t4-pad: clamp(2.5rem, 8vw, 3.75rem);
+    }
+
     .t4-header__cta {
         display: none;
+    }
+
+    .t4-hero {
+        padding-top: clamp(1rem, 4vw, 1.5rem);
+    }
+
+    .t4-hero__grid {
+        padding-bottom: clamp(1rem, 4vw, 1.5rem);
+    }
+
+    .t4-hero__title {
+        font-size: clamp(1.7rem, 7vw, 2.3rem);
+        margin-bottom: 0.8rem;
+    }
+
+    .t4-hero__lede {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 0.9rem;
+    }
+
+    .t4-hero__media {
+        max-height: min(27vh, 200px);
+        max-height: min(27svh, 200px);
+        margin-bottom: 0.8rem;
+    }
+
+    .t4-hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .t4-hero__actions .t4-btn {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 0.82rem;
+    }
+
+    .t4-hero__meta {
+        padding-top: 0.7rem;
+        gap: 0.7rem;
+    }
+
+    .t4-hero__thumb {
+        border-width: 4px;
+    }
+
+    .t4-hero__badge {
+        left: 0;
+        width: clamp(56px, 16vw, 74px);
+        font-size: 0.66rem;
     }
 
     .t4-srow__head {
@@ -1974,10 +2087,6 @@ body.t4-nav-open .t4-burger__line:nth-child(2) {
 }
 
 @media (max-width: 420px) {
-    .t4-hero__meta {
-        grid-template-columns: 1fr;
-    }
-
     .t4-intro__stats {
         grid-template-columns: 1fr;
     }
@@ -1992,6 +2101,21 @@ body.t4-nav-open .t4-burger__line:nth-child(2) {
 
     .t4-gallery__grid {
         grid-auto-rows: clamp(150px, 52vw, 220px);
+    }
+}
+
+@media (max-width: 359px) {
+    .t4-hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .t4-hero__actions .t4-btn {
+        width: 100%;
+    }
+
+    .t4-hero__meta {
+        grid-template-columns: 1fr;
     }
 }
 

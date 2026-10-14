@@ -1,7 +1,10 @@
 (function () {
     const BASE_PATH = 'html/templates';
     const KNOWN_TEMPLATES = [];
-    for (let i = 1; i <= 10; i += 1) KNOWN_TEMPLATES.push(`template-${i}`);
+    for (let i = 1; i <= 10; i += 1) {
+        if (i === 2 || i === 6) continue;
+        KNOWN_TEMPLATES.push(`template-${i}`);
+    }
 
     function showLoadError() {
         const root = document.getElementById('template-root');
@@ -42,6 +45,9 @@
             const root = document.getElementById('template-root');
             root.innerHTML = tpl.html;
             tpl.render(data);
+            if (window.SiteWidgets && typeof window.SiteWidgets.enhance === 'function') {
+                window.SiteWidgets.enhance(data);
+            }
         });
     }
 
@@ -50,6 +56,10 @@
         const settings = data.settings || {};
         let selected = settings.selectedTemplate || 'template-1';
         if (KNOWN_TEMPLATES.indexOf(selected) === -1) selected = 'template-1';
+        if (data.settings && data.settings.selectedTemplate !== selected) {
+            data.settings.selectedTemplate = selected;
+            window.storage.updateSettings({ selectedTemplate: selected });
+        }
         renderTemplate(selected, data).catch((e) => {
             console.error('Template load failed (' + selected + '):', e);
             if (selected !== 'template-1') {

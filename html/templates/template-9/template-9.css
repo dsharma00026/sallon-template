@@ -20,7 +20,7 @@ body[data-template="template-9"] {
     --t9-line-2: #cdccc6;
     --t9-line-dark: #3a3a3a;
     --t9-muted: #6f6e69;
-    --t9-faint: #706f69;
+    --t9-faint: #8e8d85;
     --t9-on-dark: #f4f3ef;
     --t9-on-dark-muted: #9a998f;
     --t9-brass-soft: rgba(166, 138, 89, 0.16);
@@ -32,6 +32,8 @@ body[data-template="template-9"] {
     --t9-gutter: clamp(16px, 4vw, 48px);
     --t9-radius: 2px;
     --t9-section-y: clamp(56px, 8vw, 112px);
+    /* Space taken by the info top bar (~58px) + sticky header (76px) */
+    --t9-hero-offset: 140px;
 
     --t9-space-1: 8px;
     --t9-space-2: 12px;
@@ -222,8 +224,9 @@ body[data-template="template-9"] .t9-topbar__inner {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 8px 14px;
+    gap: 6px 14px;
     min-height: 42px;
+    padding-block: 8px;
 }
 
 body[data-template="template-9"] .t9-topbar__inner > span:first-child {
@@ -376,48 +379,78 @@ body[data-template="template-9"].t9-nav-open .t9-nav-scrim {
 
 /* ---------- Hero ---------- */
 body[data-template="template-9"] .t9-hero {
-    padding: clamp(40px, 6vw, 88px) 0 clamp(48px, 7vw, 96px);
-    background: var(--t9-warm);
+    position: relative;
+    display: grid;
+    align-items: center;
+    overflow: hidden;
+    min-height: clamp(420px, calc(100vh - var(--t9-hero-offset)), 940px);
+    min-height: clamp(420px, calc(100svh - var(--t9-hero-offset)), 940px);
+    padding: clamp(28px, 5vh, 72px) 0;
+    background:
+        radial-gradient(90% 80% at 92% -8%, rgba(166, 138, 89, 0.15), transparent 62%),
+        var(--t9-warm);
+    border-bottom: 1px solid var(--t9-line);
+}
+
+/* Faint blueprint grid that fades toward the fold */
+body[data-template="template-9"] .t9-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--t9-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--t9-line) 1px, transparent 1px);
+    background-size: 68px 68px;
+    opacity: 0.55;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 76%);
+    mask-image: linear-gradient(180deg, #000 0%, transparent 76%);
+    pointer-events: none;
 }
 
 body[data-template="template-9"] .t9-hero__inner {
+    position: relative;
+    z-index: 1;
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    gap: clamp(32px, 5vw, 72px);
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: clamp(36px, 5vw, 84px);
     align-items: center;
 }
 
 body[data-template="template-9"] .t9-hero__copy {
     min-width: 0;
+    max-width: 640px;
 }
 
 body[data-template="template-9"] .t9-hero__title {
-    font-size: clamp(2.2rem, 5.4vw, 4.4rem);
+    font-size: clamp(2.3rem, 5vw, 4.2rem);
     font-weight: 800;
-    letter-spacing: -0.025em;
+    line-height: 1.03;
+    letter-spacing: -0.03em;
     text-wrap: balance;
 }
 
 body[data-template="template-9"] .t9-hero__lede {
-    max-width: 52ch;
-    margin-top: 22px;
+    max-width: 46ch;
+    margin-top: 24px;
     color: var(--t9-muted);
-    font-size: clamp(1rem, 1.3vw, 1.12rem);
+    font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+    line-height: 1.7;
 }
 
 body[data-template="template-9"] .t9-hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
-    margin-top: 32px;
+    margin-top: 34px;
 }
 
 body[data-template="template-9"] .t9-hero__meta {
-    margin-top: 26px;
-    padding-top: 20px;
+    max-width: 46ch;
+    margin-top: 30px;
+    padding-top: 22px;
     border-top: 1px solid var(--t9-line);
     color: var(--t9-muted);
-    font-size: 0.86rem;
+    font-size: 0.85rem;
     letter-spacing: 0.02em;
 }
 
@@ -428,10 +461,22 @@ body[data-template="template-9"] .t9-hero__figure {
 
 body[data-template="template-9"] .t9-hero__media {
     position: relative;
+    width: 100%;
     aspect-ratio: 4 / 5;
+    max-height: min(62vh, 640px);
     overflow: hidden;
     background: var(--t9-stone);
     border: 1px solid var(--t9-line-2);
+    box-shadow: var(--t9-shadow);
+}
+
+/* Inset frame sits above the image for a tailored, editorial feel */
+body[data-template="template-9"] .t9-hero__media::after {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    pointer-events: none;
 }
 
 body[data-template="template-9"] .t9-hero__media img {
@@ -460,6 +505,7 @@ body[data-template="template-9"] .t9-hero__card {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    min-width: 132px;
     padding: 16px 22px;
     background: var(--t9-ink);
     color: var(--t9-on-dark);
@@ -476,7 +522,7 @@ body[data-template="template-9"] .t9-hero__card-num {
 }
 
 body[data-template="template-9"] .t9-hero__card-stars {
-    color: var(--t9-brass);
+    color: var(--t9-brass-bright);
     letter-spacing: 2px;
     font-size: 0.82rem;
 }
@@ -496,7 +542,7 @@ body[data-template="template-9"] .t9-stats {
 
 body[data-template="template-9"] .t9-stats__inner {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
 body[data-template="template-9"] .t9-stat {
@@ -1512,8 +1558,18 @@ body[data-template="template-9"] [data-reveal].is-visible {
    ===================================================================== */
 
 @media (max-width: 980px) {
+    body[data-template="template-9"] .t9-hero {
+        min-height: auto;
+        padding: 36px 0 56px;
+    }
+
     body[data-template="template-9"] .t9-hero__inner {
         grid-template-columns: minmax(0, 1fr);
+        gap: clamp(30px, 6vw, 48px);
+    }
+
+    body[data-template="template-9"] .t9-hero__copy {
+        max-width: none;
     }
 
     body[data-template="template-9"] .t9-hero__figure {
@@ -1647,6 +1703,26 @@ body[data-template="template-9"] [data-reveal].is-visible {
 
     body[data-template="template-9"] .t9-topbar__phone {
         margin-left: 0;
+    }
+
+    body[data-template="template-9"] .t9-hero {
+        padding: 30px 0 54px;
+    }
+
+    body[data-template="template-9"] .t9-hero__media {
+        aspect-ratio: 4 / 3;
+    }
+
+    body[data-template="template-9"] .t9-hero__media::after {
+        inset: 10px;
+    }
+
+    body[data-template="template-9"] .t9-hero__lede {
+        margin-top: 18px;
+    }
+
+    body[data-template="template-9"] .t9-hero__actions {
+        margin-top: 26px;
     }
 
     body[data-template="template-9"] .t9-hero__actions .t9-btn {

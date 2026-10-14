@@ -41,6 +41,7 @@ body[data-template="template-10"] {
     --t10-font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
     --t10-font-body: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
     --t10-shadow: 0 30px 70px -50px rgba(23, 22, 21, 0.65);
+    --t10-hero-offset: 85px;
 
     margin: 0;
     font-family: var(--t10-font-body);
@@ -345,9 +346,16 @@ body[data-template="template-10"].t10-nav-open {
 
 /* ---------- Hero ---------- */
 body[data-template="template-10"] .t10-hero {
-    padding: clamp(48px, 6vw, 96px) 0 clamp(60px, 8vw, 118px);
-    background: var(--t10-porcelain);
+    display: grid;
+    align-items: center;
     overflow-x: clip;
+    min-height: clamp(440px, calc(100vh - var(--t10-hero-offset)), 980px);
+    min-height: clamp(440px, calc(100svh - var(--t10-hero-offset)), 980px);
+    padding: clamp(28px, 5vh, 72px) 0;
+    background:
+        radial-gradient(85% 78% at 88% -12%, rgba(216, 197, 165, 0.22), transparent 60%),
+        var(--t10-porcelain);
+    border-bottom: 1px solid var(--t10-line);
 }
 
 body[data-template="template-10"] .t10-hero__inner {
@@ -359,12 +367,13 @@ body[data-template="template-10"] .t10-hero__inner {
 
 body[data-template="template-10"] .t10-hero__copy {
     min-width: 0;
+    max-width: 620px;
 }
 
 body[data-template="template-10"] .t10-hero__title {
-    font-size: clamp(2.6rem, 6vw, 5rem);
-    line-height: 1.02;
-    letter-spacing: -0.015em;
+    font-size: clamp(2.5rem, 5.2vw, 4.6rem);
+    line-height: 1.03;
+    letter-spacing: -0.02em;
     text-wrap: balance;
 }
 
@@ -374,10 +383,11 @@ body[data-template="template-10"] .t10-hero__title em {
 }
 
 body[data-template="template-10"] .t10-hero__lede {
-    max-width: 50ch;
+    max-width: 46ch;
     margin-top: 24px;
     color: var(--t10-muted);
-    font-size: clamp(1rem, 1.25vw, 1.12rem);
+    font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+    line-height: 1.7;
 }
 
 body[data-template="template-10"] .t10-hero__actions {
@@ -388,12 +398,13 @@ body[data-template="template-10"] .t10-hero__actions {
 }
 
 body[data-template="template-10"] .t10-hero__meta {
+    max-width: 46ch;
     margin-top: 30px;
     padding-top: 22px;
     border-top: 1px solid var(--t10-line);
     color: var(--t10-muted);
-    font-size: 0.84rem;
-    letter-spacing: 0.03em;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
 }
 
 body[data-template="template-10"] .t10-hero__figure {
@@ -403,9 +414,21 @@ body[data-template="template-10"] .t10-hero__figure {
 
 body[data-template="template-10"] .t10-hero__media {
     position: relative;
+    width: 100%;
     aspect-ratio: 4 / 5;
+    max-height: min(60vh, 640px);
     overflow: hidden;
     background: var(--t10-mushroom);
+    border: 1px solid var(--t10-line-2);
+    box-shadow: var(--t10-shadow);
+}
+
+body[data-template="template-10"] .t10-hero__media::after {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    pointer-events: none;
 }
 
 body[data-template="template-10"] .t10-hero__media img {
@@ -1527,12 +1550,17 @@ body[data-template="template-10"] [data-reveal].is-visible {
     }
 
     body[data-template="template-10"] .t10-hero {
-        padding-top: clamp(28px, 4vw, 64px);
+        min-height: auto;
+        padding: clamp(28px, 4vw, 60px) 0 clamp(44px, 7vw, 84px);
+    }
+
+    body[data-template="template-10"] .t10-hero__copy {
+        max-width: none;
     }
 
     body[data-template="template-10"] .t10-hero__media {
-        aspect-ratio: 16 / 12;
-        max-height: clamp(190px, 32vh, 320px);
+        aspect-ratio: 16 / 11;
+        max-height: clamp(210px, 36vh, 360px);
     }
 
     body[data-template="template-10"] .t10-hero__label {
@@ -1646,6 +1674,15 @@ body[data-template="template-10"] [data-reveal].is-visible {
 
     body[data-template="template-10"] .t10-hero__actions .t10-btn {
         width: 100%;
+    }
+
+    body[data-template="template-10"] .t10-hero__media {
+        aspect-ratio: 4 / 3;
+        max-height: 48vh;
+    }
+
+    body[data-template="template-10"] .t10-hero__media::after {
+        inset: 10px;
     }
 
     body[data-template="template-10"] .t10-service {

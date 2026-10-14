@@ -329,8 +329,8 @@
         const { className = '', eager = false, fallback = FALLBACK_IMAGE } = options;
         const safeSrc = src ? escapeHtml(src) : fallback;
         const cls = className ? ` class="${className}"` : '';
-        const loading = eager ? '' : ' loading="lazy"';
-        return `<img${cls} src="${safeSrc}" alt="${escapeHtml(alt)}"${loading}>`;
+        const hints = eager ? ' fetchpriority="high"' : ' loading="lazy" decoding="async"';
+        return `<img${cls} src="${safeSrc}" alt="${escapeHtml(alt)}"${hints}>`;
     }
 
     function initialsOf(name) {
@@ -432,8 +432,30 @@
         const business = data.business || {};
         const contact = data.contact || {};
         const hours = data.openingHours || {};
-        setText('t7-brand-name', business.name || 'Studio');
+        const settings = data.settings || {};
+        const name = business.name || settings.primaryBusinessName || 'Studio';
+
+        setText('t7-brand-name', name);
         setText('t7-brand-tag', business.tagline || '');
+
+        const brand = document.querySelector('.t7-brand');
+        if (brand) {
+            let logo = brand.querySelector('.t7-brand__logo');
+            if (business.logoUrl) {
+                if (!logo) {
+                    logo = document.createElement('img');
+                    logo.className = 't7-brand__logo';
+                    logo.addEventListener('error', () => {
+                        if (logo.parentNode) logo.parentNode.removeChild(logo);
+                    });
+                    brand.insertBefore(logo, brand.firstChild);
+                }
+                logo.alt = name + ' logo';
+                logo.src = business.logoUrl;
+            } else if (logo && logo.parentNode) {
+                logo.parentNode.removeChild(logo);
+            }
+        }
 
         const location = [business.city, business.country].filter(Boolean).join(', ') || contact.address || '';
         setText('t7-utility-loc', location ? 'Studio \u00b7 ' + location : 'Hair & Beauty');

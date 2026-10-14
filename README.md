@@ -1,6 +1,6 @@
-# Salon Website Prototype — Phase 1 + Phase 2 (Templates 1, 2, 3, 4, 5, 6, 7, 8 & 9)
+# Salon Website Prototype — Phase 1 + Phase 2 (Templates 1, 3, 4, 5, 7, 8 & 9)
 
-Reusable salon website prototype: **shared data structure + LocalStorage + data manager + admin panel + CRUD + demo data + settings**, plus customer-facing websites — **Template 1: "Modern Luxury Editorial Beauty"** (default), **Template 2: "Modern Architectural Salon"**, **Template 3: "Contemporary Botanical Beauty Studio"**, **Template 4: "Urban Pop — Creative Hair & Beauty Studio"**, **Template 5: "Contemporary Digital Beauty Lounge"**, **Template 6: "Quiet Luxury — Private Beauty Atelier"**, **Template 7: "Avant-Garde Fashion Campaign"**, **Template 8: "Sunlit Coastal Beauty Studio"**, and **Template 9: "Modern Monochrome Barber Studio"**.
+Reusable salon website prototype: **shared data structure + LocalStorage + data manager + admin panel + CRUD + demo data + settings**, plus customer-facing websites — **Template 1: "Modern Luxury Editorial Beauty"** (default), **Template 3: "Contemporary Botanical Beauty Studio"**, **Template 4: "Urban Pop — Creative Hair & Beauty Studio"**, **Template 5: "Contemporary Digital Beauty Lounge"**, **Template 7: "Avant-Garde Fashion Campaign"**, **Template 8: "Sunlit Coastal Beauty Studio"**, and **Template 9: "Modern Monochrome Barber Studio"**.
 
 Static project only. No framework, no backend, no database, no build step.
 
@@ -13,7 +13,7 @@ Static project only. No framework, no backend, no database, no build step.
 
 ## Fonts & images (fully offline)
 
-- **Fonts are self-hosted** in `assets/fonts/` (loaded by `assets/fonts/fonts.css`). No Google Fonts CDN is used, so the display serif (Cormorant Garamond), body fonts, and the Template 3 (Fraunces + Manrope), Template 4 (Space Grotesk + DM Sans), Template 5 (Syne + Onest), Template 6 (Playfair Display + Jost), Template 7 (Bodoni Moda + Instrument Sans), Template 8 (Marcellus + Mulish), and Template 9 (Sora + Public Sans) pairings render correctly from `file://` even offline.
+- **Fonts are self-hosted** in `assets/fonts/` (loaded by `assets/fonts/fonts.css`). No Google Fonts CDN is used, so the display serif (Cormorant Garamond), body fonts, and the Template 3 (Fraunces + Manrope), Template 4 (Space Grotesk + DM Sans), Template 5 (Syne + Onest), Template 7 (Bodoni Moda + Instrument Sans), Template 8 (Marcellus + Mulish), and Template 9 (Sora + Public Sans) pairings render correctly from `file://` even offline.
 - **Demo images are bundled** in `assets/images/` and referenced by `default-data.js` via relative paths — no remote image hosts.
 - Existing LocalStorage data is migrated automatically (`storage.js: migrate()`, guarded by `dataVersion`) so any seeded gallery/team record still pointing at an empty or remote URL is switched to the bundled local image without wiping user edits.
 - Image loading falls back to an inline monogram SVG (`bindImageFallback()`) if a source can't be loaded.
@@ -55,9 +55,6 @@ salon-prototype/
 │       ├── template-1/       # Template 1: markup (embedded in JS) + CSS + renderer
 │       │   ├── template-1.css
 │       │   └── template-1.js
-│       ├── template-2/       # Template 2: markup (embedded in JS) + CSS + renderer
-│       │   ├── template-2.css
-│       │   └── template-2.js
 │       ├── template-3/       # Template 3: markup (embedded in JS) + CSS + renderer
 │       │   ├── template-3.css
 │       │   └── template-3.js
@@ -67,9 +64,6 @@ salon-prototype/
 │       ├── template-5/       # Template 5: markup (embedded in JS) + CSS + renderer
 │       │   ├── template-5.css
 │       │   └── template-5.js
-│       ├── template-6/       # Template 6: markup (embedded in JS) + CSS + renderer
-│       │   ├── template-6.css
-│       │   └── template-6.js
 │       ├── template-7/       # Template 7: markup (embedded in JS) + CSS + renderer
 │       │   ├── template-7.css
 │       │   └── template-7.js
@@ -115,21 +109,15 @@ Each template folder is self-contained: its own `template-N.css` and `template-N
 - Premium editorial design — hero, trust strip, about, editorial service menu, featured service, packages, team, gallery with lightbox, testimonials, booking form, visit/hours, footer.
 - Warm ivory palette, Cormorant Garamond display serif + Inter, fade-up reveal animations.
 
-### Template 2: Modern Architectural Salon
-
-- Architectural / minimal / bold urban design — full-viewport hero with image media + metadata bar, typographic brand statement, services grouped by category (Hair / Nails / Skin / Spa), signature service feature, Studio Philosophy, portfolio-style work grid with lightbox, structured numbered team rows with hover image reveal, compact testimonials, **package comparison table**, multi-step-styled booking (01 Your Details → 04 Message), architectural hours table, minimal contact block, large typographic footer CTA.
-- Warm white / concrete / charcoal palette, Archivo + IBM Plex Mono, line-wipe reveal animations (clip-path, distinct from T1).
-- CSS scoped: all T2 rules live under `#t2-shell` / `body[data-template="template-2"]`, and only T2's CSS is loaded when T2 is selected.
-
 ### Template 3: Contemporary Botanical Beauty Studio
 
-- Organic, nature-infused design language distinct from T1/T2 — arch-shaped hero photograph with a circular inset and a live "open today" hours chip, editorial studio intro with offset image and bloom badge, soft rounded service cards (category chips, duration, price, book shortcut), featured top-tier treatment panel, petal-topped package cards, arch-framed team portraits, varied-proportion masonry gallery with lightbox, warm testimonial cards, a forest-green reservations panel with a full booking form, contact + hours + social cards, and a rounded dark footer.
-- Forest green / sage / warm white / stone / charcoal palette with a restrained terracotta accent; **Fraunces** (display) + **Manrope** (body) — a pairing deliberately different from T1 and T2; fluid type scale and spacing tokens, botanical leaf motifs, `prefers-reduced-motion` support.
+- Organic, nature-infused design language distinct from T1 — arch-shaped hero photograph with a circular inset and a live "open today" hours chip, editorial studio intro with offset image and bloom badge, soft rounded service cards (category chips, duration, price, book shortcut), featured top-tier treatment panel, petal-topped package cards, arch-framed team portraits, varied-proportion masonry gallery with lightbox, warm testimonial cards, a forest-green reservations panel with a full booking form, contact + hours + social cards, and a rounded dark footer.
+- Forest green / sage / warm white / stone / charcoal palette with a restrained terracotta accent; **Fraunces** (display) + **Manrope** (body) — a pairing deliberately different from T1; fluid type scale and spacing tokens, botanical leaf motifs, `prefers-reduced-motion` support.
 - CSS scoped under `body[data-template="template-3"]` / `html:has(body[data-template="template-3"])`, and only T3's CSS is loaded when T3 is selected.
 
 ### Template 4: Urban Pop — Creative Hair & Beauty Studio
 
-- Bold, energetic, fashion-forward design language distinct from T1/T2/T3 — black sticky masthead with an uppercase nav and coral Book button, a campaign-style hero with oversized headline, layered image cards and an EST. badge, plus a scrolling service-category marquee; a studio statement with stat cards; **services as a bold typographic accordion** (index / name / category / price / plus-minus toggle → panel with image, description, duration and a Book shortcut); a full-width cobalt headline-service feature (highest-priced actual service); bold bundle blocks with a featured middle card; an asymmetric bento team grid with hover/focus bio reveal; an irregular mosaic gallery with an accessible lightbox; a horizontal scroll-snap testimonial slider (prev/next + arrow keys); a black reservations section with the full booking form; typographic contact + hours + social blocks; and a huge-type footer.
+- Bold, energetic, fashion-forward design language distinct from T1/T3 — black sticky masthead with an uppercase nav and coral Book button, a campaign-style hero with oversized headline, layered image cards and an EST. badge, plus a scrolling service-category marquee; a studio statement with stat cards; **services as a bold typographic accordion** (index / name / category / price / plus-minus toggle → panel with image, description, duration and a Book shortcut); a full-width cobalt headline-service feature (highest-priced actual service); bold bundle blocks with a featured middle card; an asymmetric bento team grid with hover/focus bio reveal; an irregular mosaic gallery with an accessible lightbox; a horizontal scroll-snap testimonial slider (prev/next + arrow keys); a black reservations section with the full booking form; typographic contact + hours + social blocks; and a huge-type footer.
 - Centralized design tokens (`--color-background/surface/primary/secondary/accent/text/muted/border` + helpers); electric cobalt / deep black / warm off-white palette with a hot-coral accent and lime highlights; sharp edges, uppercase labels, color blocks and oversized `clamp()` type.
 - **Space Grotesk** (display) + **DM Sans** (body) — a pairing deliberately different from T1–T3; `prefers-reduced-motion` support (marquee, reveals and smooth scroll disabled).
 - CSS scoped under `body[data-template="template-4"]` / `html:has(body[data-template="template-4"])`, and only T4's CSS is loaded when T4 is selected.
@@ -142,19 +130,11 @@ Each template folder is self-contained: its own `template-N.css` and `template-N
 - Full data-driven rendering from shared data; empty states hide sections; booking shortcuts `[data-service]`/`[data-package]` preselect the form and scroll; appointments saved via `storage.addAppointment` and appear in Admin; image fallbacks + `prefers-reduced-motion` support.
 - CSS scoped under `body[data-template="template-5"]` / `html:has(body[data-template="template-5"])`, and only T5's CSS is loaded when T5 is selected.
 
-### Template 6: Quiet Luxury — Private Beauty Atelier
-
-- Understated, warm, private-atelier design language distinct from T1–T5 — a calm centered "masthead" hero (kicker / title / lede / actions) above a wide cinematic `21/9` figure with a hairline caption (location + today's hours); an about block with a warm taupe image band and a definition-list of studio facts; **services as airy three-column hairline rows** (name + meta / description / price + Book); a split feature card for the highest-priced actual service; bordered three-cell package grid; a three-column portrait team grid; a two-column gallery with an alternating wide rhythm and an accessible lightbox; a featured-lead testimonial plus hairline quote columns; a two-column reservations section (aside + light panel) with the full booking form; three hairline contact cards (contact / hours / social); and a deep espresso footer.
-- Soft ivory / white / espresso palette with a restrained oxblood accent and a warm taupe band; generous whitespace, hairline rules and minimal motion for a quiet-luxury feel.
-- **Playfair Display** (display) + **Jost** (body) — a pairing deliberately different from T1–T5.
-- Full data-driven rendering from shared data; empty states hide sections; booking shortcuts `[data-service]`/`[data-package]` preselect the form and scroll; appointments saved via `storage.addAppointment` and appear in Admin; image fallbacks + `prefers-reduced-motion` support.
-- CSS scoped under `body[data-template="template-6"]` / `html:has(body[data-template="template-6"])`, and only T6's CSS is loaded when T6 is selected.
-
 ### Template 7: Avant-Garde Fashion Campaign
 
-- Bold, art-directed fashion-campaign design language distinct from T1–T6 — a two-tier header (ink utility strip + sticky paper bar that gains a border on scroll); a full-bleed campaign hero with an oversized didone title (last word set in italic crimson), an index/eyebrow kicker, a location + credits footer and a scroll cue; an asymmetric about block with a drop-cap, a definition-list of studio facts and an offset image; **services as an editorial numbered list** (index / name / meta / description / price + Book) with an ink-invert hover; a full-bleed split feature for the highest-priced actual service (image / ink body); **packages as full-width editorial rows** (index / name / description / included treatment list / price / Reserve); a staggered contact-sheet team grid (grayscale → colour hover); a 12-column asymmetric editorial gallery with index captions and an accessible lightbox; a centered Bodoni-italic pull-quote testimonial rotator (prev/next + index, auto-advance, keyboard, paused on hover/focus, disabled under reduced motion); an ink reservations section with a white form panel and the full booking form; a three-column visit block (contact / hours / social); and a footer with a giant wordmark.
+- Bold, art-directed fashion-campaign design language distinct from T1–T5 — a two-tier header (ink utility strip + sticky paper bar that gains a border on scroll); a full-bleed campaign hero with an oversized didone title (last word set in italic crimson), an index/eyebrow kicker, a location + credits footer and a scroll cue; an asymmetric about block with a drop-cap, a definition-list of studio facts and an offset image; **services as an editorial numbered list** (index / name / meta / description / price + Book) with an ink-invert hover; a full-bleed split feature for the highest-priced actual service (image / ink body); **packages as full-width editorial rows** (index / name / description / included treatment list / price / Reserve); a staggered contact-sheet team grid (grayscale → colour hover); a 12-column asymmetric editorial gallery with index captions and an accessible lightbox; a centered Bodoni-italic pull-quote testimonial rotator (prev/next + index, auto-advance, keyboard, paused on hover/focus, disabled under reduced motion); an ink reservations section with a white form panel and the full booking form; a three-column visit block (contact / hours / social); and a footer with a giant wordmark.
 - Ink black / paper white / soft editorial grey palette with a single crimson accent (`#c1121f`); oversized Didone type, uppercase micro-labels and a two-tier header for a high-fashion campaign feel.
-- **Bodoni Moda** (display, incl. italic) + **Instrument Sans** (body) — a pairing deliberately different from T1–T6.
+- **Bodoni Moda** (display, incl. italic) + **Instrument Sans** (body) — a pairing deliberately different from T1–T5.
 - Full data-driven rendering from shared data; empty states hide sections; booking shortcuts `[data-service]`/`[data-package]` preselect the form and scroll; appointments saved via `storage.addAppointment` and appear in Admin; image fallbacks + `prefers-reduced-motion` support.
 - CSS scoped under `body[data-template="template-7"]` / `html:has(body[data-template="template-7"])`, and only T7's CSS is loaded when T7 is selected.
 

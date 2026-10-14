@@ -357,23 +357,29 @@ body.t1-nav-open .t1-burger__line:last-child {
 /* ---------- Hero ---------- */
 
 .t1-hero {
-    padding-top: calc(var(--t1-offset) + clamp(3rem, 7vw, 6rem));
-    padding-bottom: clamp(3rem, 6vw, 5.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - var(--t1-status-h));
+    min-height: calc(100svh - var(--t1-status-h));
+    padding-top: calc(var(--t1-offset) + clamp(1.5rem, 3vw, 2.5rem));
+    padding-bottom: clamp(1.75rem, 4vw, 3rem);
     scroll-margin-top: var(--t1-offset);
 }
 
 .t1-hero__grid {
     display: grid;
+    width: 100%;
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     gap: clamp(2.5rem, 6vw, 5.5rem);
     align-items: center;
 }
 
 .t1-hero__title {
-    margin: 0 0 1.75rem;
+    margin: 0 0 1.5rem;
     font-family: var(--t1-font-display);
     font-weight: 500;
-    font-size: clamp(3rem, 7vw, 6rem);
+    font-size: clamp(2.6rem, 5.6vw, 5.25rem);
     line-height: 0.98;
     letter-spacing: -0.015em;
     color: var(--t1-ink);
@@ -381,11 +387,11 @@ body.t1-nav-open .t1-burger__line:last-child {
 }
 
 .t1-hero__lede {
-    margin: 0 0 2.5rem;
+    margin: 0 0 2rem;
     max-width: 34rem;
     font-size: clamp(1rem, 1.3vw, 1.125rem);
     font-weight: 300;
-    line-height: 1.75;
+    line-height: 1.7;
     color: var(--t1-muted);
 }
 
@@ -394,7 +400,7 @@ body.t1-nav-open .t1-burger__line:last-child {
     align-items: center;
     flex-wrap: wrap;
     gap: 1.75rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.25rem;
 }
 
 .t1-hero__meta {
@@ -414,8 +420,8 @@ body.t1-nav-open .t1-burger__line:last-child {
 
 .t1-hero__media-main {
     position: relative;
-    aspect-ratio: 4 / 5;
-    max-height: min(72vh, 660px);
+    width: 100%;
+    height: clamp(340px, 56vh, 560px);
     overflow: hidden;
     background: var(--t1-line);
 }
@@ -1751,14 +1757,25 @@ body.t1-nav-open .t1-burger__line:last-child {
         display: none;
     }
 
+    .t1-hero {
+        min-height: auto;
+        padding-top: calc(var(--t1-offset) + 2rem);
+    }
+
     .t1-hero__grid {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: clamp(2rem, 6vw, 3rem);
     }
 
     .t1-hero__media {
         order: -1;
+        width: 100%;
         max-width: 520px;
+        margin-inline: auto;
+    }
+
+    .t1-hero__media-main {
+        height: clamp(320px, 48vh, 480px);
     }
 
     .t1-hero__media-inset {
