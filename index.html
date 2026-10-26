@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salon</title>
-    <meta name="description" content="A premium salon website.">
+    <title>Salon &amp; Beauty Website Collection</title>
+    <meta name="description" content="Explore eight live salon and beauty website designs. Preview each template full-screen and find the right look for your salon.">
     <link rel="icon" href="data:,">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Salon">
-    <meta property="og:description" content="A premium salon website.">
+    <meta property="og:title" content="Salon &amp; Beauty Website Collection">
+    <meta property="og:description" content="Eight live salon website designs. Choose a direction and preview it full-screen.">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
-    <link rel="stylesheet" href="css/site-admin.css">
-    <link rel="stylesheet" href="css/site-widgets.css">
+    <link rel="stylesheet" href="css/showcase.css">
     <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
@@ -21,13 +20,146 @@
     </script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
-<body>
-    <div id="template-root"></div>
+<body class="showcase-page">
+    <a class="showcase-skip" href="#designs">Skip to the designs</a>
+
+    <header class="showcase-header">
+        <a class="showcase-brand" href="index.html" aria-label="Salon Collection home">
+            <span class="showcase-brand__mark" aria-hidden="true">S</span>
+            <span class="showcase-brand__name">Salon <em>Collection</em></span>
+        </a>
+        <nav class="showcase-nav" aria-label="Primary">
+            <a href="#designs">Designs</a>
+            <a href="#approach">Approach</a>
+            <a class="showcase-nav__cta" href="preview.html" target="_blank" rel="noopener" aria-label="View demo site">
+                <span>View demo site</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M7 17 17 7"></path>
+                    <path d="M8 7h9v9"></path>
+                </svg>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="showcase-hero" aria-labelledby="showcase-title">
+            <div class="showcase-hero__intro">
+                <p class="showcase-eyebrow"><span aria-hidden="true"></span> Salon &amp; beauty website collection</p>
+                <h1 id="showcase-title">Eight salon websites.<br><em>Find your fit.</em></h1>
+            </div>
+            <div class="showcase-hero__panel">
+                <p class="showcase-lede">
+                    Explore eight complete website designs, live and ready to compare. Open any preview
+                    full-screen, then choose the direction that feels like your salon.
+                </p>
+                <div class="showcase-actions">
+                    <a class="showcase-btn showcase-btn--solid" href="#designs">
+                        Browse all designs
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                            <path d="M12 5v14"></path>
+                            <path d="m6 13 6 6 6-6"></path>
+                        </svg>
+                    </a>
+                    <a class="showcase-btn showcase-btn--ghost" href="#approach">
+                        How it works
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                            <path d="M12 5v14"></path>
+                            <path d="m6 13 6 6 6-6"></path>
+                        </svg>
+                    </a>
+                </div>
+                <dl class="showcase-stats">
+                    <div>
+                        <dt data-showcase-count>08</dt>
+                        <dd>live designs</dd>
+                    </div>
+                    <div>
+                        <dt>01</dt>
+                        <dd>content system</dd>
+                    </div>
+                    <div>
+                        <dt>100%</dt>
+                        <dd>responsive</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="showcase-designs" id="designs" aria-labelledby="designs-title">
+            <div class="showcase-section-head">
+                <div>
+                    <p class="showcase-eyebrow"><span aria-hidden="true"></span> The collection</p>
+                    <h2 id="designs-title">Choose a <em>direction.</em></h2>
+                </div>
+                <div class="showcase-section-meta">
+                    <span class="showcase-count"><b data-showcase-count>08</b> live previews</span>
+                    <p>Click any design to open it full-screen.</p>
+                </div>
+            </div>
+            <div class="design-grid" id="design-grid" aria-live="polite"></div>
+        </section>
+
+        <section class="showcase-approach" id="approach" aria-labelledby="approach-title">
+            <div class="showcase-approach__copy">
+                <p class="showcase-eyebrow"><span aria-hidden="true"></span> One system, eight personalities</p>
+                <h2 id="approach-title">Your content stays.<br>The <em>feeling</em> changes.</h2>
+                <p>
+                    Services, pricing, team, gallery, reviews, opening hours and bookings all live in one
+                    place. Choose a design for the first impression &mdash; everything else is already connected.
+                </p>
+                <a class="showcase-text-link" href="admin.html">
+                    Open the admin panel
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <path d="M5 12h14"></path>
+                        <path d="m13 6 6 6-6 6"></path>
+                    </svg>
+                </a>
+            </div>
+            <ul class="showcase-features">
+                <li>
+                    <span aria-hidden="true">01</span>
+                    <div>
+                        <h3>Live, not mocked up</h3>
+                        <p>Each card is the real design running on the real demo content.</p>
+                    </div>
+                </li>
+                <li>
+                    <span aria-hidden="true">02</span>
+                    <div>
+                        <h3>Built to be compared</h3>
+                        <p>Open any design full-screen, then return to the collection in one click.</p>
+                    </div>
+                </li>
+                <li>
+                    <span aria-hidden="true">03</span>
+                    <div>
+                        <h3>Ready for a real salon</h3>
+                        <p>Editable business details, services, packages, team, gallery, reviews and appointments.</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="showcase-footer">
+        <div class="showcase-footer__brand">
+            <span class="showcase-brand__mark" aria-hidden="true">S</span>
+            <p>Salon Collection<span>Demo content &middot; <span data-business-name>Luxe Beauty Studio</span></span></p>
+        </div>
+        <div class="showcase-footer__meta">
+            <p>Eight designs. One content layer.</p>
+            <p>
+                <a href="admin.html">Admin</a>
+                <span aria-hidden="true">&middot;</span>
+                <a href="preview.html">Demo site</a>
+            </p>
+        </div>
+    </footer>
+
     <script src="js/data/default-data.js"></script>
     <script src="js/utils/helpers.js"></script>
     <script src="js/data/storage.js"></script>
-    <script src="js/admin-nav.js"></script>
-    <script src="js/site-widgets.js"></script>
-    <script src="js/template.js"></script>
+    <script src="js/template-catalog.js"></script>
+    <script src="js/showcase.js"></script>
 </body>
 </html>

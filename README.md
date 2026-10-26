@@ -1,6 +1,8 @@
-# Salon Website Prototype — Phase 1 + Phase 2 (Templates 1, 3, 4, 5, 7, 8 & 9)
+# Salon Website Prototype — Templates 1, 3, 4, 5, 7, 8, 9 & 10 + Design Gallery
 
-Reusable salon website prototype: **shared data structure + LocalStorage + data manager + admin panel + CRUD + demo data + settings**, plus customer-facing websites — **Template 1: "Modern Luxury Editorial Beauty"** (default), **Template 3: "Contemporary Botanical Beauty Studio"**, **Template 4: "Urban Pop — Creative Hair & Beauty Studio"**, **Template 5: "Contemporary Digital Beauty Lounge"**, **Template 7: "Avant-Garde Fashion Campaign"**, **Template 8: "Sunlit Coastal Beauty Studio"**, and **Template 9: "Modern Monochrome Barber Studio"**.
+Reusable salon website prototype: **shared data structure + LocalStorage + data manager + admin panel + CRUD + demo data + settings**, plus a **design gallery** that shows every template as a live iframe preview and a customer-facing website loader that can open any design with `preview.html?template=template-N`.
+
+Included designs: **Template 1: "Modern Luxury Editorial Beauty"** (default), **Template 3: "Contemporary Botanical Beauty Studio"**, **Template 4: "Urban Pop — Creative Hair & Beauty Studio"**, **Template 5: "Contemporary Digital Beauty Lounge"**, **Template 7: "Avant-Garde Fashion Campaign"**, **Template 8: "Sunlit Coastal Beauty Studio"**, **Template 9: "Modern Monochrome Barber Studio"**, and **Template 10: "The Beauty House"**.
 
 Static project only. No framework, no backend, no database, no build step.
 
@@ -34,14 +36,26 @@ python -m http.server 8000
 
 | Page | Purpose |
 |---|---|
-| `index.html` | Thin shell: reads `settings.selectedTemplate` from LocalStorage and loads only that template's HTML + CSS + JS |
-| `admin.html` | Admin panel: dashboard, all CRUD sections, settings (incl. template switcher) |
+| `index.html` | Design gallery: live iframe previews of every template, palette details and a full-screen **Preview** button for each design |
+| `preview.html` | Customer-facing website shell: loads `?template=template-N` (or `settings.selectedTemplate` when no query is present) and renders only that template's HTML + CSS + JS |
+| `admin.html` | Admin panel: dashboard, all CRUD sections and general settings (template switching now happens through the design gallery, not the admin panel) |
+
+## Design gallery
+
+- The root URL (`index.html`) opens the design gallery.
+- Every card contains a real live iframe of the design (lazy-loaded as it approaches the viewport) plus its palette, tags, font pairing and description.
+- **Preview** / card click opens `preview.html?template=template-N` in a new tab.
+- Clicking a preview from the gallery keeps the gallery open in the original tab; previews open full-screen in a new tab.
+- The full-screen preview includes a small bottom dock to return to the gallery or jump to the next design.
+- Embedded gallery iframes set `?embed=1`, which hides the gallery dock/admin button and skips the expensive map widget.
+- No template picker is shown in the admin panel anymore. `settings.selectedTemplate` is still used as the fallback design for `preview.html`; pass a `template` query parameter to preview any other design.
 
 ## Folder structure
 
 ```text
 salon-prototype/
-├── index.html                # thin shell: assets/fonts/fonts.css + #template-root + classic core scripts + js/template.js loader
+├── index.html                # design gallery: hero, live iframe template cards + preview links
+├── preview.html              # thin shell: #template-root + classic core scripts + js/template.js loader + preview dock
 ├── admin.html
 ├── assets/
 │   ├── fonts/
@@ -73,12 +87,17 @@ salon-prototype/
 │       ├── template-9/       # Template 9: markup (embedded in JS) + CSS + renderer
 │       │   ├── template-9.css
 │       │   └── template-9.js
-│       └── template-10/      # stub template (same 2-file layout)
+│       └── template-10/      # Template 10: markup (embedded in JS) + CSS + renderer
 ├── css/
+│   ├── showcase.css          # design gallery styling
+│   ├── preview.css           # full-screen preview dock + embedded-preview tweaks
 │   ├── style.css             # shared components (buttons, forms, modals, badges)
 │   └── admin.css             # admin layout
 ├── js/
 │   ├── template.js           # classic loader: inject template CSS + JS → set innerHTML → render(data)
+│   ├── template-catalog.js   # shared template names, palettes, tags and order
+│   ├── showcase.js           # builds gallery cards + lazy iframe previews
+│   ├── preview.js            # full-screen preview dock and embed mode
 │   ├── data/
 │   │   ├── default-data.js   # demo salon (Luxe Beauty Studio), global DEFAULT_DATA
 │   │   └── storage.js        # data manager (single LocalStorage namespace), window.storage
@@ -154,12 +173,20 @@ Each template folder is self-contained: its own `template-N.css` and `template-N
 - Full data-driven rendering from shared data; empty states hide sections; booking shortcuts `[data-service]`/`[data-package]` preselect the form and scroll; appointments saved via `storage.addAppointment` and appear in Admin; image fallbacks + `prefers-reduced-motion` support.
 - CSS scoped under `body[data-template="template-9"]` / `html:has(body[data-template="template-9"])`, and only T9's CSS is loaded when T9 is selected.
 
+### Template 10: The Beauty House
+
+- Warm, refined beauty-house design language distinct from T1–T9 — a porcelain-and-cocoa page with a classic display serif, polished header, editorial hero, treatment menu, curated packages, team, gallery, testimonials, a full reservations panel and a closing CTA.
+- Porcelain / cocoa / champagne palette with hairline rules, soft shadows and understated luxury.
+- **DM Serif Display** (display) + **Figtree** (body).
+- Full data-driven rendering from shared data; empty states hide sections; booking shortcuts preselect the form and scroll; appointments save through `storage.addAppointment` and appear in Admin; image fallbacks + `prefers-reduced-motion` support.
+- CSS scoped under `body[data-template="template-10"]` / `html:has(body[data-template="template-10"])`, and only T10's CSS is loaded when T10 is selected.
+
 ### Shared behavior (all templates)
 
 - Every section is data-driven from the shared data layer. Admin changes (rename salon, add/delete service, change hours) appear immediately after refresh.
 - Empty sections hide themselves gracefully (no gallery → no gallery section, no packages → no packages section).
 - The booking form saves real appointment records through the data layer (visible in the admin panel).
-- Switching `settings.selectedTemplate` in admin never resets salon data; `js/template.js` loads only the selected template's CSS/renderer and falls back to Template 1 if it cannot be loaded.
+- Previewing a template from the design gallery never resets salon data; `js/template.js` loads only the requested template's CSS/renderer, uses `?template=` when present and falls back to `settings.selectedTemplate` (then Template 1) if needed.
 
 ## Architecture
 
@@ -204,6 +231,5 @@ Import the repo, keep the framework preset as **Other**, no build command, no en
 
 ## Not included (later phases)
 
-- Template 10 (will be built and reviewed individually, consuming the same data layer)
 - Laravel API + MySQL (will replace the LocalStorage implementation inside the data manager only)
 - Authentication, real uploads, email/WhatsApp sending, payments, cloud database

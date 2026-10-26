@@ -23,7 +23,6 @@ class SettingsAdmin {
 
     loadSettings() {
         const settings = storage.getSettings();
-        setFieldValue('setting-selectedTemplate', settings.selectedTemplate || 'template-1');
         setFieldValue('setting-primaryBusinessName', settings.primaryBusinessName);
         setFieldValue('setting-websiteStatus', settings.websiteStatus || 'published');
     }
@@ -41,7 +40,6 @@ class SettingsAdmin {
         e.preventDefault();
 
         const data = {
-            selectedTemplate: document.getElementById('setting-selectedTemplate')?.value,
             primaryBusinessName: document.getElementById('setting-primaryBusinessName')?.value.trim(),
             websiteStatus: document.getElementById('setting-websiteStatus')?.value
         };

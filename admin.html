@@ -77,9 +77,13 @@
                 </div>
             </nav>
             <div class="sidebar-footer">
-                <a href="index.html" class="nav-link" target="_blank" rel="noopener">
+                <a href="preview.html" class="nav-link" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                     View Website
+                </a>
+                <a href="index.html" class="nav-link" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    Design Gallery
                 </a>
             </div>
         </aside>
@@ -99,7 +103,7 @@
                     <h2 class="page-title" id="page-title">Dashboard</h2>
                 </div>
                 <div class="header-right">
-                    <a href="index.html" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">View Site</a>
+                    <a href="preview.html" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">View Site</a>
                     <button type="button" class="btn btn-secondary btn-sm" data-admin-logout>Logout</button>
                     <div class="user-menu">
                         <div class="user-avatar">A</div>
@@ -586,7 +590,7 @@
                     <div class="section-header">
                         <div>
                             <h2>Settings</h2>
-                            <p class="section-intro">Template selection is stored separately from salon data.</p>
+                            <p class="section-intro">General website preferences. To explore another design, open the <a href="index.html" target="_blank" rel="noopener">design gallery</a>.</p>
                         </div>
                     </div>
                     <form id="settings-form">
@@ -594,31 +598,17 @@
                             <h3>Website Settings</h3>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label class="form-label" for="setting-selectedTemplate">Selected Template</label>
-                                    <select id="setting-selectedTemplate" class="form-control">
-                                        <option value="template-1">Template 1</option>
-                                        <option value="template-3">Template 3</option>
-                                        <option value="template-4">Template 4</option>
-                                        <option value="template-5">Template 5</option>
-                                        <option value="template-7">Template 7</option>
-                                        <option value="template-8">Template 8</option>
-                                        <option value="template-9">Template 9</option>
-                                        <option value="template-10">Template 10</option>
-                                    </select>
-                                    <p class="form-hint">Changing the template only changes the visual presentation. Salon data stays the same.</p>
-                                </div>
-                                <div class="form-group">
                                     <label class="form-label" for="setting-primaryBusinessName">Primary Business Name</label>
                                     <input type="text" id="setting-primaryBusinessName" class="form-control" placeholder="Business name override">
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="setting-websiteStatus">Website Status</label>
-                                <select id="setting-websiteStatus" class="form-control">
-                                    <option value="published">Published</option>
-                                    <option value="draft">Draft</option>
-                                    <option value="maintenance">Maintenance</option>
-                                </select>
+                                <div class="form-group">
+                                    <label class="form-label" for="setting-websiteStatus">Website Status</label>
+                                    <select id="setting-websiteStatus" class="form-control">
+                                        <option value="published">Published</option>
+                                        <option value="draft">Draft</option>
+                                        <option value="maintenance">Maintenance</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="form-actions">

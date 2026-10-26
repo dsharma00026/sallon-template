@@ -1,0 +1,174 @@
+/* ============================================================
+   Full-screen template preview
+   Adds a small floating navigation dock without touching the
+   template layouts.
+   ============================================================ */
+
+html.is-embed .site-admin-btn,
+html.is-public-preview .site-admin-btn {
+    display: none !important;
+}
+
+/* Some browsers do not fire reveal observers inside a scaled iframe.
+   The gallery previews are static thumbnails, so show all content immediately. */
+html.is-embed [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+.preview-dock {
+    position: fixed;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    left: 50%;
+    z-index: 2147483000;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    max-width: calc(100vw - 24px);
+    padding: 0.35rem;
+    border: 1px solid rgba(246, 241, 232, 0.18);
+    border-radius: 999px;
+    background: rgba(13, 12, 11, 0.9);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 24px 70px -28px rgba(0, 0, 0, 0.8);
+    color: #f6f1e8;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 1;
+    transform: translateX(-50%);
+    animation: preview-dock-in 0.45s ease both;
+}
+
+.preview-dock a,
+.preview-dock span {
+    box-sizing: border-box;
+}
+
+.preview-dock a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 2.4rem;
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+    color: #f6f1e8;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.preview-dock a:hover,
+.preview-dock a:focus-visible {
+    background: rgba(246, 241, 232, 0.12);
+    color: #ffffff;
+}
+
+.preview-dock a:focus-visible {
+    outline: 2px solid #c9a66b;
+    outline-offset: 2px;
+}
+
+.preview-dock svg {
+    width: 0.9rem;
+    height: 0.9rem;
+    flex: none;
+}
+
+.preview-dock__back {
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.preview-dock__divider {
+    width: 1px;
+    height: 1.1rem;
+    margin: 0 0.15rem;
+    background: rgba(246, 241, 232, 0.18);
+}
+
+.preview-dock__name {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    max-width: 18rem;
+    padding: 0 0.45rem;
+    overflow: hidden;
+}
+
+.preview-dock__number {
+    flex: none;
+    color: #c9a66b;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+}
+
+.preview-dock__label {
+    overflow: hidden;
+    color: rgba(246, 241, 232, 0.7);
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    font-size: 0.58rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.preview-dock__next {
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+@keyframes preview-dock-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 12px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@media (max-width: 640px) {
+    .preview-dock {
+        bottom: max(10px, env(safe-area-inset-bottom));
+        width: calc(100vw - 20px);
+        justify-content: space-between;
+    }
+
+    .preview-dock__divider {
+        display: none;
+    }
+
+    .preview-dock__name {
+        max-width: none;
+        flex: 1;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .preview-dock__label {
+        display: none;
+    }
+
+    .preview-dock__back,
+    .preview-dock__next {
+        padding-inline: 0.7rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .preview-dock {
+        animation: none;
+    }
+}

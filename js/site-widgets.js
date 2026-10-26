@@ -95,6 +95,9 @@
         } catch (error) {
             console.error('WhatsApp CTA injection failed:', error);
         }
+        // The map sits far below the fold and is expensive to load. Skip it
+        // inside the small live previews used by the design gallery.
+        if (document.documentElement.classList.contains('is-embed')) return;
         try {
             injectMap(data);
         } catch (error) {
